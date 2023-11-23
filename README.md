@@ -41,7 +41,8 @@ Each agent incorporates a feedback mechanism to learn from its operations and ou
 ## 📊 Mermaid Diagrams
 Below is an example of a Mermaid diagram to illustrate the coordination between agents:
 
-```mermaid graph TB;
+```mermaid
+graph TD;
     CoordinatorAgent[🔄 Coordinator Agent] -->|Oversees| ArchitectureAgent[🏛️ Architecture Agent]
     CoordinatorAgent -->|Oversees| MitosisAgent[✂️ Mitosis Agent]
     CoordinatorAgent -->|Oversees| ParserAgent[🤖 Parser Agent]
