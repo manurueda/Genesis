@@ -22,15 +22,18 @@ Project Genesis utilizes a multi-agent system to cover different aspects of both
 - 🎨 **Branding Agent**: Cultivates the project's public image and outreach strategies.
 
 ### Coding Agents
-- 🤖 **Parser Agent**: Reviews the codebase for SRP compliance, suggesting improvements where necessary.
-- 🧪 **Testing Agent**: Creates and runs tests to ensure code quality and functionality.
-- 🔗 **Integration Agent**: Handles module dependencies and integration, respecting DI principles.
-- 🚀 **Deployment Agent**: Manages the deployment process through CI/CD pipelines.
-- 🖥️ **Interface Agent**: Links the toolchain to various IDEs for a unified coding experience.
-- 🧠 **Brain Agent**: Connects with LLMs to provide advanced code intelligence.
-- 🔄 **Coordinator Agent**: Harmonizes the operations of all agents for optimal workflow.
-- 🏛️ **Architecture Agent**: Oversees the overall structure of the codebase, guiding design patterns.
-- ✂️ **SRP Agent**: Splits and refactors the codebase to enforce SRP.
+- 🔄 Coordinator Agent: Coordinates all other agents and oversees the entire automated workflow.
+- 🏛️ Architecture Agent: Guides the structural design and architectural patterns of the codebase.
+- ✂️ Mitosis Agent: Ensures the codebase adheres to the Single Responsibility Principle by refactoring when necessary.
+- 🤖 Parser Agent: Analyzes the codebase for SRP compliance and suggests improvements.
+- 🔗 Integration Agent: Manages dependencies and respects DI principles for module integration.
+- 🧪 Testing Agent: Generates and runs tests to maintain high code quality and functionality.
+- 🚀 Deployment Agent: Automates and manages the deployment process through CI/CD pipelines.
+- 📝 Documentation Agent: Automatically generates and updates documentation based on the codebase and changes made.
+- 📚 Versioning Agent: Handles commits, merges, and other version control operations, maintaining a history of changes and facilitating rollbacks if needed.
+- 🖥️ Interface Agent: Integrates the automation toolchain with various IDEs, ensuring a seamless developer experience.
+- 🧠 Brain Agent: Interfaces with local or remote LLMs like langchain for enhanced code intelligence.
+
 
 ## 🔄 Operating Logic and Feedback Loops
 Each agent incorporates a feedback mechanism to learn from its operations and outcomes, constantly improving its processes and interactions with other agents.
@@ -39,15 +42,30 @@ Each agent incorporates a feedback mechanism to learn from its operations and ou
 Below is an example of a Mermaid diagram to illustrate the coordination between agents:
 
 ```mermaid
-graph TD;
-    CoordinatorAgent[Coordinator Agent] -->|Manages| ParserAgent[Parser Agent]
-    CoordinatorAgent -->|Manages| TestingAgent[Testing Agent]
-    CoordinatorAgent -->|Manages| IntegrationAgent[Integration Agent]
-    CoordinatorAgent -->|Manages| DeploymentAgent[Deployment Agent]
-    CoordinatorAgent -->|Manages| InterfaceAgent[Interface Agent]
-    CoordinatorAgent -->|Manages| BrainAgent[Brain Agent]
-    CoordinatorAgent -->|Manages| ArchitectureAgent[Architecture Agent]
-    CoordinatorAgent -->|Manages| SRPAgent[SRP Agent]
+graph TB;
+    CoordinatorAgent[🔄 Coordinator Agent] -->|Oversees| ArchitectureAgent[🏛️ Architecture Agent]
+    CoordinatorAgent -->|Oversees| MitosisAgent[✂️ Mitosis Agent]
+    CoordinatorAgent -->|Oversees| ParserAgent[🤖 Parser Agent]
+    CoordinatorAgent -->|Oversees| IntegrationAgent[🔗 Integration Agent]
+    CoordinatorAgent -->|Oversees| TestingAgent[🧪 Testing Agent]
+    CoordinatorAgent -->|Oversees| DeploymentAgent[🚀 Deployment Agent]
+    CoordinatorAgent -->|Oversees| DocumentationAgent[📝 Documentation Agent]
+    CoordinatorAgent -->|Oversees| VersioningAgent[📚 Versioning Agent]
+    CoordinatorAgent -->|Oversees| InterfaceAgent[🖥️ Interface Agent]
+    CoordinatorAgent -->|Oversees| BrainAgent[🧠 Brain Agent]
+
+    ArchitectureAgent -->|Informs| MitosisAgent
+    MitosisAgent -->|Feedback to| ArchitectureAgent
+    ParserAgent -->|Feedback to| MitosisAgent
+    IntegrationAgent -->|Coordinates with| TestingAgent
+    TestingAgent -->|Provides test results to| DeploymentAgent
+    DocumentationAgent -->|Documents| VersioningAgent
+    VersioningAgent -->|Version history for| ArchitectureAgent
+    InterfaceAgent -->|Interacts with| BrainAgent
+    BrainAgent -->|Enhances| ParserAgent
+
+    classDef default fill:#f9f,stroke:#333,stroke-width:4px;
+    class CoordinatorAgent,ArchitectureAgent,MitosisAgent,ParserAgent,IntegrationAgent,TestingAgent,DeploymentAgent,DocumentationAgent,VersioningAgent,InterfaceAgent,BrainAgent default;
 ```
 
 ## 🛠️ Technologies
