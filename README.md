@@ -42,17 +42,17 @@ Each agent incorporates a feedback mechanism to learn from its operations and ou
 Below is an example of a Mermaid diagram to illustrate the coordination between agents:
 
 ```mermaid
-graph TD;
-    CoordinatorAgent[🔄 Coordinator Agent] -->|Oversees| ArchitectureAgent[🏛️ Architecture Agent]
-    CoordinatorAgent -->|Oversees| MitosisAgent[✂️ Mitosis Agent]
-    CoordinatorAgent -->|Oversees| ParserAgent[🤖 Parser Agent]
-    CoordinatorAgent -->|Oversees| IntegrationAgent[🔗 Integration Agent]
-    CoordinatorAgent -->|Oversees| TestingAgent[🧪 Testing Agent]
-    CoordinatorAgent -->|Oversees| DeploymentAgent[🚀 Deployment Agent]
-    CoordinatorAgent -->|Oversees| DocumentationAgent[📝 Documentation Agent]
-    CoordinatorAgent -->|Oversees| VersioningAgent[📚 Versioning Agent]
-    CoordinatorAgent -->|Oversees| InterfaceAgent[🖥️ Interface Agent]
-    CoordinatorAgent -->|Oversees| BrainAgent[🧠 Brain Agent]
+graph TB;
+    CoordinatorAgent[Coordinator Agent] -->|Oversees| ArchitectureAgent[Architecture Agent]
+    CoordinatorAgent -->|Oversees| MitosisAgent[Mitosis Agent]
+    CoordinatorAgent -->|Oversees| ParserAgent[Parser Agent]
+    CoordinatorAgent -->|Oversees| IntegrationAgent[Integration Agent]
+    CoordinatorAgent -->|Oversees| TestingAgent[Testing Agent]
+    CoordinatorAgent -->|Oversees| DeploymentAgent[Deployment Agent]
+    CoordinatorAgent -->|Oversees| DocumentationAgent[Documentation Agent]
+    CoordinatorAgent -->|Oversees| VersioningAgent[Versioning Agent]
+    CoordinatorAgent -->|Oversees| InterfaceAgent[Interface Agent]
+    CoordinatorAgent -->|Oversees| BrainAgent[Brain Agent]
 
     ArchitectureAgent -->|Informs| MitosisAgent
     MitosisAgent -->|Feedback to| ArchitectureAgent
@@ -66,6 +66,7 @@ graph TD;
 
     classDef default fill:#f9f,stroke:#333,stroke-width:4px;
     class CoordinatorAgent,ArchitectureAgent,MitosisAgent,ParserAgent,IntegrationAgent,TestingAgent,DeploymentAgent,DocumentationAgent,VersioningAgent,InterfaceAgent,BrainAgent default;
+
 ```
 
 ## 🛠️ Technologies
