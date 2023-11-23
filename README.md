@@ -1,4 +1,4 @@
-![Project Genesis Logo]([https://example.com/path/to/logo.png](https://cdn.leonardo.ai/users/ab17897b-be22-4e00-9ba2-0e8f7bcea180/generations/4fd1701e-0e49-40ba-bac2-ed30512a15b7/variations/Default_give_me_a_portrait_from_behind_of_a_hacker_on_a_laptop_3_4fd1701e-0e49-40ba-bac2-ed30512a15b7_1.jpg) "Project Genesis")
+![Project Genesis Logo](https://example.com/path/to/logo.png](https://cdn.leonardo.ai/users/ab17897b-be22-4e00-9ba2-0e8f7bcea180/generations/4fd1701e-0e49-40ba-bac2-ed30512a15b7/variations/Default_give_me_a_portrait_from_behind_of_a_hacker_on_a_laptop_3_4fd1701e-0e49-40ba-bac2-ed30512a15b7_1.jpg "Project Genesis")
 
 # Project Genesis: The Dawn of Autonomous Code Evolution
 
