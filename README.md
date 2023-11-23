@@ -63,6 +63,9 @@ graph TB;
     VersioningAgent -->|Version history for| ArchitectureAgent
     InterfaceAgent -->|Interacts with| BrainAgent
     BrainAgent -->|Enhances| ParserAgent
+
+    classDef default fill:#f9f,stroke:#333,stroke-width:4px;
+    class CoordinatorAgent,ArchitectureAgent,MitosisAgent,ParserAgent,IntegrationAgent,TestingAgent,DeploymentAgent,DocumentationAgent,VersioningAgent,InterfaceAgent,BrainAgent default;
 ```
 
 ## 🛠️ Technologies
