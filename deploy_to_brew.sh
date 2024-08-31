@@ -24,7 +24,11 @@ for cmd in git curl shasum; do
 done
 
 # Get the current version from setup.py
-current_version=$(grep -oP "(?<=version=')\d+\.\d+" setup.py)
+current_version=$(grep -oE "version=['\"]([0-9]+\.[0-9]+)['\"]" setup.py | grep -oE "[0-9]+\.[0-9]+")
+if [ -z "$current_version" ]; then
+    error "Failed to get the current version from setup.py"
+    exit 1
+fi
 
 # Increment the version number
 IFS='.' read -r major minor <<< "$current_version"
