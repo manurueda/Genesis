@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "genesis"
-version = "0.1.17"
+version = "0.1.18"
 description = "Project Genesis: The Dawn of Autonomous Code Evolution"
 authors = ["Manu Rueda <jm.glezderueda@gmail.com>"]
 readme = "README.md"
@@ -14,11 +14,11 @@ pytest = "^6.0"
 
 [tool.poetry.packages]
 packages = [
-    {include = "genesis"}
+    { include = "genesis" }
 ]
 
 [tool.poetry.scripts]
-genesis = "genesis.cli:main"  # Ensure this points to the correct entry point
+genesis = "genesis.cli:main"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
