@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "project-genesis"
-version = "0.1.4"
+version = "0.1.2"
 description = "Project Genesis: The Dawn of Autonomous Code Evolution"
 authors = ["Manu Rueda <jm.glezderueda@gmail.com>"]
 license = "MIT"
