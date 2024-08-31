@@ -33,7 +33,7 @@ Project Genesis utilizes a multi-agent system to cover different aspects of both
 - 📚 Versioning Agent: Handles commits, merges, and other version control operations, maintaining a history of changes and facilitating rollbacks if needed.
 - 🖥️ Interface Agent: Integrates the automation toolchain with various IDEs, ensuring a seamless developer experience.
 - 🧠 Brain Agent: Interfaces with local or remote LLMs like langchain for enhanced code intelligence.
-
+- 💻 Coding Agent: Generates code based on user input.
 
 ## 🔄 Operating Logic and Feedback Loops
 Each agent incorporates a feedback mechanism to learn from its operations and outcomes, constantly improving its processes and interactions with other agents.
@@ -41,48 +41,13 @@ Each agent incorporates a feedback mechanism to learn from its operations and ou
 ## 📊 Mermaid Diagrams
 Below is an example of a Mermaid diagram to illustrate the coordination between agents:
 
-```mermaid
-graph TB;
-    CoordinatorAgent[Coordinator Agent] -->|Oversees| ArchitectureAgent[Architecture Agent]
-    CoordinatorAgent -->|Oversees| MitosisAgent[Mitosis Agent]
-    CoordinatorAgent -->|Oversees| ParserAgent[Parser Agent]
-    CoordinatorAgent -->|Oversees| IntegrationAgent[Integration Agent]
-    CoordinatorAgent -->|Oversees| TestingAgent[Testing Agent]
-    CoordinatorAgent -->|Oversees| DeploymentAgent[Deployment Agent]
-    CoordinatorAgent -->|Oversees| DocumentationAgent[Documentation Agent]
-    CoordinatorAgent -->|Oversees| VersioningAgent[Versioning Agent]
-    CoordinatorAgent -->|Oversees| InterfaceAgent[Interface Agent]
-    CoordinatorAgent -->|Oversees| BrainAgent[Brain Agent]
+Below is an example of a Mermaid diagram to illustrate the coordination between agents:
 
-    ArchitectureAgent -->|Informs| MitosisAgent
-    MitosisAgent -->|Feedback to| ArchitectureAgent
-    ParserAgent -->|Feedback to| MitosisAgent
-    IntegrationAgent -->|Coordinates with| TestingAgent
-    TestingAgent -->|Provides test results to| DeploymentAgent
-    DocumentationAgent -->|Documents| VersioningAgent
-    VersioningAgent -->|Version history for| ArchitectureAgent
-    InterfaceAgent -->|Interacts with| BrainAgent
-    BrainAgent -->|Enhances| ParserAgent
-```
+- 🧠 Brain Agent: Interfaces with local or remote LLMs like langchain for enhanced code intelligence.
 
-## 🛠️ Technologies
-Detail the specific technologies, languages, and frameworks used in the project.
 
-## 🚀 Getting Started
-Step-by-step instructions for setting up the Project Genesis environment.
+## Installation
 
-## 📖 Usage
-Guidance and examples on using Project Genesis across various IDEs.
+### Using Homebrew (macOS)
 
-## 📋 Project Coordination
-Information on the organizational tools and methods used to keep the project on track and aligned with its goals.
-
-## 🤝 Contributing
-Guidelines for contributors to ensure their work aligns with the project's core principles and standards.
-
-## 📄 License
-The licensing information under which Project Genesis is released.
-
-## 📬 Contact
-Contact information for the project maintainers for support, collaboration, or inquiries.
-
+You can install Project Genesis using Homebrew:
