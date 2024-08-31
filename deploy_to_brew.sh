@@ -35,10 +35,6 @@ version_parts[2]=$((version_parts[2] + 1))
 new_version="${version_parts[0]}.${version_parts[1]}.${version_parts[2]}"
 echo "New version: $new_version"
 
-# Update the formula file with the new version
-echo "Updating genesis.rb with new version..."
-sed -i '' "s|v$current_version|v$new_version|g" genesis.rb
-
 # Download the new tarball
 tarball_url="https://github.com/manurueda/Genesis/archive/refs/tags/v$new_version.tar.gz"
 echo "Downloading tarball from $tarball_url..."
@@ -49,9 +45,9 @@ echo "Calculating SHA256 checksum..."
 sha256=$(shasum -a 256 "genesis-$new_version.tar.gz" | awk '{ print $1 }')
 echo "SHA256 checksum: $sha256"
 
-# Update the formula file with the new SHA256 checksum
-echo "Updating genesis.rb with new SHA256 checksum..."
-sed -i '' "s|sha256 \".*\"|sha256 \"$sha256\"|g" genesis.rb
+# Create a new genesis.rb from the template
+echo "Creating new genesis.rb from template..."
+sed "s|{{VERSION}}|$new_version|g; s|{{SHA256}}|$sha256|g" genesis_template.rb > genesis.rb
 
 # Update version in pyproject.toml
 echo "Updating pyproject.toml with new version..."
