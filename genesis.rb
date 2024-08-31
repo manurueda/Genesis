@@ -1,9 +1,9 @@
 class Genesis < Formula
-  include Language::Python::Virtualenv..1..1..1
+  include Language::Python::Virtualenv..1..1..1..1
 
-  desc "Project Genesis: The Dawn of Autonomous Code Ev..1..1..1olution"
+  desc "Project Genesis: The Dawn of Autonomous Code Ev..1..1..1..1olution"
   homepage "https://github.com/manurueda/Genesis"
-  url "https://github.com/manurueda/Genesis/archiv..1..1..1e/refs/tags/v..1..1..10.1.tar.gz"
+  url "https://github.com/manurueda/Genesis/archiv..1..1..1..1e/refs/tags/v..1..1..1..10.1.tar.gz"
   sha256 "replace_with_actual_sha256_of_your_tarball"
   license "MIT"
 
@@ -30,7 +30,7 @@ class Genesis < Formula
   end
 
   def install
-    v..1..1..1irtualenv..1..1..1_install_with_resources
+    v..1..1..1..1irtualenv..1..1..1..1_install_with_resources
   end
 
   test do
