@@ -25,29 +25,50 @@ for cmd in git curl shasum; do
 done
 
 # Get the current version from the formula file
+echo "Extracting current version from genesis.rb..."
 current_version=$(grep -Eo 'url "https://github.com/manurueda/Genesis/archive/refs/tags/v[0-9]+\.[0-9]+\.[0-9]+"' genesis.rb | grep -Eo '[0-9]+\.[0-9]+\.[0-9]+')
+echo "Current version: $current_version"
 
 # Increment the patch version
 IFS='.' read -r -a version_parts <<< "$current_version"
 version_parts[2]=$((version_parts[2] + 1))
 new_version="${version_parts[0]}.${version_parts[1]}.${version_parts[2]}"
+echo "New version: $new_version"
 
 # Update the formula file with the new version
+echo "Updating genesis.rb with new version..."
 sed -i '' "s|v$current_version|v$new_version|g" genesis.rb
 
+# Download the new tarball
+tarball_url="https://github.com/manurueda/Genesis/archive/refs/tags/v$new_version.tar.gz"
+echo "Downloading tarball from $tarball_url..."
+curl -L -o "genesis-$new_version.tar.gz" "$tarball_url"
+
+# Calculate the SHA256 checksum
+echo "Calculating SHA256 checksum..."
+sha256=$(shasum -a 256 "genesis-$new_version.tar.gz" | awk '{ print $1 }')
+echo "SHA256 checksum: $sha256"
+
+# Update the formula file with the new SHA256 checksum
+echo "Updating genesis.rb with new SHA256 checksum..."
+sed -i '' "s|sha256 \".*\"|sha256 \"$sha256\"|g" genesis.rb
 
 # Update version in pyproject.toml
+echo "Updating pyproject.toml with new version..."
 sed -i '' "s/version = .*/version = \"$NEW_VERSION\"/" pyproject.toml
 
 # Commit the changes
-git add pyproject.toml
+echo "Committing changes to git..."
+git add pyproject.toml genesis.rb
 git commit -m "Bump version to v$NEW_VERSION"
 
 # Create and push the new tag
+echo "Creating and pushing new git tag..."
 git tag "v$NEW_VERSION"
 git push origin main --tags
 
 # Deploy to Homebrew
+echo "Deploying to Homebrew..."
 brew update
 brew install --build-from-source ./genesis.rb
 
