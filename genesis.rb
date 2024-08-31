@@ -1,6 +1,6 @@
 class Genesis < Formula
-  include Language::Python::Virtualenv..1..1..1..1..1..1
-
+  include Language::Python::Virtualenv
+  
   desc "Project Genesis: The Dawn of Autonomous Code Ev..1..1..1..1..1..1olution"
   homepage "https://github.com/manurueda/Genesis"
   url "https://github.com/manurueda/Genesis/archiv..1..1..1..1..1..1e/refs/tags/v..1..1..1..1..1..10.1.tar.gz"

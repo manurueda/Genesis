@@ -1,4 +1,5 @@
 #!/bin/bash
+NEW_VERSION="0.1.1"  # Replace with your desired version number
 
 # Colors for output
 GREEN='\033[0;32m'
@@ -34,10 +35,16 @@ new_version="${version_parts[0]}.${version_parts[1]}.${version_parts[2]}"
 # Update the formula file with the new version
 sed -i '' "s|v$current_version|v$new_version|g" genesis.rb
 
+
+# Update version in pyproject.toml
+sed -i '' "s/version = .*/version = \"$NEW_VERSION\"/" pyproject.toml
+
 # Commit the changes
-git add genesis.rb
-git commit -m "Bump version to v$new_version"
-git tag "v$new_version"
+git add pyproject.toml
+git commit -m "Bump version to v$NEW_VERSION"
+
+# Create and push the new tag
+git tag "v$NEW_VERSION"
 git push origin main --tags
 
 # Deploy to Homebrew
