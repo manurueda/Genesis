@@ -3,8 +3,8 @@ class Genesis < Formula
   
   desc "Project Genesis: The Dawn of Autonomous Code Evolution"
   homepage "https://github.com/manurueda/Genesis"
-  url "https://github.com/manurueda/Genesis/archive/refs/tags/v0.1.13.tar.gz"
-  sha256 "0a8f0b90c333130fda314732c84b5a659c5375880db491e1d644415876416a74"
+  url "https://github.com/manurueda/Genesis/archive/refs/tags/v0.1.14.tar.gz"
+  sha256 "8169b29bab061ef61e2abb1cc31a9ba49a56c486c22a530d787fb10d41de0024"
   license "MIT"
 
   depends_on "python@3.12"
