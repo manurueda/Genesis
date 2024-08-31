@@ -24,22 +24,27 @@ for cmd in git curl shasum; do
 done
 
 # Get the current version from setup.py
-current_version=$(grep -oE "version=['\"]([0-9]+\.[0-9]+)['\"]" setup.py | grep -oE "[0-9]+\.[0-9]+")
+current_version=$(grep -oE "version=['\"]([0-9]+\.[0-9]+\.[0-9]+)['\"]" setup.py | grep -oE "[0-9]+\.[0-9]+\.[0-9]+")
 if [ -z "$current_version" ]; then
     error "Failed to get the current version from setup.py"
     exit 1
 fi
 
 # Increment the version number
-IFS='.' read -r major minor <<< "$current_version"
-new_version="$major.$((minor + 1))"
+IFS='.' read -r major minor patch <<< "$current_version"
+new_version="$major.$minor.$((patch + 1))"
 
 # Tag the new version
+if git rev-parse "v$new_version" >/dev/null 2>&1; then
+    error "Tag v$new_version already exists. Please update the version manually."
+    exit 1
+fi
+
 git tag -a "v$new_version" -m "Release version $new_version"
 git push origin "v$new_version"
 
 # Download the new tarball
-tarball_url="https://github.com/manurueda/Genesis/archive/refs/tags/v$new_version.tar.gz"
+tarball_url="https://github.com/manurueda/genesis/archive/refs/tags/v$new_version.tar.gz"
 curl -L $tarball_url -o genesis.tar.gz
 
 # Calculate the SHA256 checksum

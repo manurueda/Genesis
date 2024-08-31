@@ -1,6 +1,6 @@
 class Genesis < Formula
   desc "Project Genesis: The Dawn of Autonomous Code Evolution"
-  homepage "https://github.com/manurueda/Genesis"
+  homepage "https://github.com/manurueda/genesis"
   url "https://github.com/manurueda/genesis/archive/refs/tags/v0.0.3.tar.gz"
   sha256 "23444dd37e4bf69fa7ec5ef740806c29917a02ca9a34487ec6ea6f63e7cfd20a"
   license "MIT"
