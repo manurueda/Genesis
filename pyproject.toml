@@ -1,8 +1,8 @@
 [tool.poetry]
 name = "genesis"
-version = "0.1.15"
+version = "0.1.16"
 description = "Project Genesis: The Dawn of Autonomous Code Evolution"
-authors = ["Your Name <you@example.com>"]
+authors = ["Manu Rueda <jm.glezderueda@gmail.com>"]
 readme = "README.md"
 license = "MIT"
 
@@ -13,10 +13,12 @@ python = "^3.12"
 pytest = "^6.0"
 
 [tool.poetry.packages]
-genesis = {from = "genesis"}
+packages = [
+    {include = "genesis"}
+]
 
 [tool.poetry.scripts]
-genesis = "genesis.cli:main"  # Make sure this points to the correct module in `agents/`
+genesis = "genesis.cli:main"  # Ensure this points to the correct entry point
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
