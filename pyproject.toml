@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "genesis"
-version = "0.1.23"
+version = "0.1.24"
 description = "Project Genesis: The Dawn of Autonomous Code Evolution"
 authors = ["Manu Rueda <jm.glezderueda@gmail.com>"]
 readme = "README.md"
