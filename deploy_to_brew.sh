@@ -29,6 +29,8 @@ echo "Extracting current version from genesis.rb..."
 current_version=$(grep -Eo 'url "https://github.com/manurueda/Genesis/archive/refs/tags/v[0-9]+\.[0-9]+\.[0-9]+"' genesis.rb | grep -Eo '[0-9]+\.[0-9]+\.[0-9]+')
 if [ -z "$current_version" ]; then
     error "Failed to extract current version from genesis.rb"
+    echo "Contents of genesis.rb:"
+    cat genesis.rb
     exit 1
 fi
 echo "Current version: $current_version"
