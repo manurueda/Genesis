@@ -23,46 +23,25 @@ for cmd in git curl shasum; do
     fi
 done
 
-# Get the current version from setup.py
-current_version=$(grep -oE "version=['\"]([0-9]+\.[0-9]+\.[0-9]+)['\"]" setup.py | grep -oE "[0-9]+\.[0-9]+\.[0-9]+")
-if [ -z "$current_version" ]; then
-    error "Failed to get the current version from setup.py"
-    exit 1
-fi
+# Get the current version from the formula file
+current_version=$(grep -Eo 'url "https://github.com/manurueda/Genesis/archive/refs/tags/v[0-9]+\.[0-9]+\.[0-9]+"' genesis.rb | grep -Eo '[0-9]+\.[0-9]+\.[0-9]+')
 
-# Increment the version number
-IFS='.' read -r major minor patch <<< "$current_version"
-new_version="$major.$minor.$((patch + 1))"
+# Increment the patch version
+IFS='.' read -r -a version_parts <<< "$current_version"
+version_parts[2]=$((version_parts[2] + 1))
+new_version="${version_parts[0]}.${version_parts[1]}.${version_parts[2]}"
 
-# Tag the new version
-if git rev-parse "v$new_version" >/dev/null 2>&1; then
-    error "Tag v$new_version already exists. Please update the version manually."
-    exit 1
-fi
+# Update the formula file with the new version
+sed -i '' "s|v$current_version|v$new_version|g" genesis.rb
 
-git tag -a "v$new_version" -m "Release version $new_version"
-git push origin "v$new_version"
-
-# Download the new tarball
-tarball_url="https://github.com/manurueda/genesis/archive/refs/tags/v$new_version.tar.gz"
-curl -L $tarball_url -o genesis.tar.gz
-
-# Calculate the SHA256 checksum
-sha256=$(shasum -a 256 genesis.tar.gz | awk '{ print $1 }')
-
-# Update the Homebrew formula
-formula_path="homebrew-genesis/genesis.rb"
-sed -i '' "s|url \".*\"|url \"$tarball_url\"|" $formula_path
-sed -i '' "s|sha256 \".*\"|sha256 \"$sha256\"|" $formula_path
-
-# Commit and push the changes to the Homebrew tap repository
-cd homebrew-genesis
+# Commit the changes
 git add genesis.rb
-git commit -m "Update Genesis to version $new_version"
-git push origin main
-cd ..
+git commit -m "Bump version to v$new_version"
+git tag "v$new_version"
+git push origin main --tags
 
-# Clean up
-rm genesis.tar.gz
+# Deploy to Homebrew
+brew update
+brew install --build-from-source ./genesis.rb
 
 success "Deployment to Homebrew completed successfully!"
