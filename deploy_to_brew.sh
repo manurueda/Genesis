@@ -27,6 +27,10 @@ done
 # Get the current version from the formula file
 echo "Extracting current version from genesis.rb..."
 current_version=$(grep -Eo 'url "https://github.com/manurueda/Genesis/archive/refs/tags/v[0-9]+\.[0-9]+\.[0-9]+"' genesis.rb | grep -Eo '[0-9]+\.[0-9]+\.[0-9]+')
+if [ -z "$current_version" ]; then
+    error "Failed to extract current version from genesis.rb"
+    exit 1
+fi
 echo "Current version: $current_version"
 
 # Increment the patch version
@@ -49,6 +53,12 @@ echo "SHA256 checksum: $sha256"
 echo "Creating new genesis.rb from template..."
 sed "s|{{VERSION}}|$new_version|g; s|{{SHA256}}|$sha256|g" genesis_template.rb > genesis.rb
 
+# Check if pyproject.toml exists
+if [ ! -f pyproject.toml ]; then
+    error "pyproject.toml not found. Please ensure the file exists."
+    exit 1
+fi
+
 # Update version in pyproject.toml
 echo "Updating pyproject.toml with new version..."
 sed -i '' "s/version = .*/version = \"$NEW_VERSION\"/" pyproject.toml
@@ -57,6 +67,12 @@ sed -i '' "s/version = .*/version = \"$NEW_VERSION\"/" pyproject.toml
 echo "Committing changes to git..."
 git add pyproject.toml genesis.rb
 git commit -m "Bump version to v$NEW_VERSION"
+
+# Check if the tag already exists
+if git rev-parse "v$NEW_VERSION" >/dev/null 2>&1; then
+    error "Tag v$NEW_VERSION already exists. Please update the version number."
+    exit 1
+fi
 
 # Create and push the new tag
 echo "Creating and pushing new git tag..."
